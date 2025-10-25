@@ -97,7 +97,7 @@ endif()
 
 # Enable debugging logging by default if the user configured a debug build
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(DEBUG_LOGGING_DEFAULT OFF)
+  set(DEBUG_LOGGING_DEFAULT ON)
 endif()
 option(ENABLE_DEBUG_LOGGING "Log execution with debug trace" ${DEBUG_LOGGING_DEFAULT})
 add_feature_info(Logging ENABLE_DEBUG_LOGGING "Logging of execution with debug trace")
