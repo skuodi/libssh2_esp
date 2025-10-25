@@ -7,7 +7,6 @@ set(CSOURCES    ${LIBSSH2_DIR}/src/agent.c
                 ${LIBSSH2_DIR}/src/chacha.c
                 ${LIBSSH2_DIR}/src/cipher-chachapoly.c
                 ${LIBSSH2_DIR}/src/crypt.c
-                ${LIBSSH2_DIR}/src/crypto.c
                 ${LIBSSH2_DIR}/src/global.c
                 ${LIBSSH2_DIR}/src/hostkey.c
                 ${LIBSSH2_DIR}/src/keepalive.c
@@ -26,7 +25,6 @@ set(CSOURCES    ${LIBSSH2_DIR}/src/agent.c
                 ${LIBSSH2_DIR}/src/userauth.c
                 ${LIBSSH2_DIR}/src/userauth_kbd_packet.c
                 ${LIBSSH2_DIR}/src/version.c
-                
                 ${LIBSSH2_DIR}/src/blowfish.c
                 ${LIBSSH2_DIR}/src/mbedtls.c
                 )
@@ -88,11 +86,11 @@ set(LIBSSH2_LIBS "")
 set(LIBSSH2_LIBDIRS "")
 set(LIBSSH2_PC_REQUIRES_PRIVATE "")
 
-check_function_exists_may_need_library("socket" HAVE_SOCKET "socket")
+libssh2_check_function_exists_may_need_library("socket" HAVE_SOCKET "socket")
 if(NEED_LIB_SOCKET)
   list(APPEND LIBSSH2_LIBS_SOCKET "socket")
 endif()
-check_function_exists_may_need_library("inet_addr" HAVE_INET_ADDR "nsl")
+libssh2_check_function_exists_may_need_library("inet_addr" HAVE_INET_ADDR "nsl")
 if(NEED_LIB_NSL)
   list(APPEND LIBSSH2_LIBS_SOCKET "nsl")
 endif()
@@ -154,7 +152,7 @@ check_function_exists("select" HAVE_SELECT)
 # dependencies which might not have been built yet.
 cmake_push_check_state()
 list(APPEND CMAKE_REQUIRED_LIBRARIES ${LIBSSH2_LIBS_SOCKET})
-check_nonblocking_socket_support()
+libssh2_check_nonblocking_socket_support()
 cmake_pop_check_state()
 
 # Config file
