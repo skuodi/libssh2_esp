@@ -19,7 +19,7 @@ demonstrate using SSH to run a command on a remote server.
 1. As a ESP-IDF managed component: In your project directory run
 
 ```
-idf.py add-dependency skuodi/libssh2_esp==1.0.0
+idf.py add-dependency skuodi/libssh2_esp==1.1.0
 ```
 
 2. As a git submodule: In your project, `components/` directory, run
